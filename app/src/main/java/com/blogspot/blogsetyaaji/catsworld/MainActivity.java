@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lvcat = findViewById(R.id.lvcat);
+        lvcat = findViewById(R.id.rv_cat);
         lvcat.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
 
         arrayCats = new ArrayList<>();
