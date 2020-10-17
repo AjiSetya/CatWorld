@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,8 +56,8 @@ class CatAdapter extends RecyclerView.Adapter<CatAdapter.Holder> implements View
         Holder(@NonNull View itemView) {
             super(itemView);
 
-            txtnamae = itemView.findViewById(R.id.txtname);
-            txtorigin = itemView.findViewById(R.id.txtorigin);
+            txtnamae = itemView.findViewById(R.id.txt_name);
+            txtorigin = itemView.findViewById(R.id.txt_origin);
         }
     }
 }
