@@ -1,63 +1,45 @@
-package com.blogspot.blogsetyaaji.catsworld;
+package com.blogspot.blogsetyaaji.catsworld
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import java.util.*
 
-import java.util.ArrayList;
-import java.util.HashMap;
+// data dari home fragment di masukkan ke dalam variable adapter
+// penangkap data dari home fragment
+// deklarasi variable data dari home fragment
+internal class CatAdapter(val context: Context, val listData: ArrayList<HashMap<String, String>>)
+    : RecyclerView.Adapter<CatAdapter.MyViewHolder>(), View.OnClickListener {
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-class CatAdapter extends RecyclerView.Adapter<CatAdapter.Holder> implements View.OnClickListener {
-
-    // deklarasi variable data dari home fragment
-    private ArrayList<HashMap<String, String>> listData;
-    private Context context;
-
-    // penangkap data dari home fragment
-    CatAdapter(Context activity, ArrayList<HashMap<String, String>> list) {
-        // data dari home fragment di masukkan ke dalam variable adapter
-        listData = list;
-        context = activity;
-    }
-
-    @NonNull
-    @Override
-    public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
         // memasang layout item ke dalam adapter
-        View view = LayoutInflater.from(context).inflate(R.layout.item_cat, viewGroup, false);
+        val view = LayoutInflater.from(context).inflate(R.layout.item_cat, viewGroup, false)
         // memasukkan  layout ke dalam viewhlder
-        return new Holder(view);
+        return MyViewHolder(view)
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull Holder holder, int i) {
-        holder.txtnamae.setText(listData.get(i).get("nama"));
-        holder.txtorigin.setText(listData.get(i).get("asal"));
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.txtnamae.text = listData[position]["nama"]
+        holder.txtorigin.text = listData[position]["asal"]
     }
 
-    @Override
-    public void onClick(View view) {
+    override fun onClick(view: View) {}
+
+    override fun getItemCount(): Int {
+        return listData.size
     }
 
-    @Override
-    public int getItemCount() {
-        return listData.size();
-    }
+    internal inner class MyViewHolder(itemView: View) : ViewHolder(itemView) {
+        var txtnamae: TextView
+        var txtorigin: TextView
 
-    class Holder extends RecyclerView.ViewHolder {
-
-        TextView txtnamae, txtorigin;
-
-        Holder(@NonNull View itemView) {
-            super(itemView);
-
-            txtnamae = itemView.findViewById(R.id.txt_name);
-            txtorigin = itemView.findViewById(R.id.txt_origin);
+        init {
+            txtnamae = itemView.findViewById(R.id.txt_name)
+            txtorigin = itemView.findViewById(R.id.txt_origin)
         }
     }
 }
