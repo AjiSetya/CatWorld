@@ -1,6 +1,5 @@
 package com.blogspot.blogsetyaaji.catsworld
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -37,8 +36,8 @@ class MainActivity : AppCompatActivity() {
     private val cats: Unit
         get() {
             progressLayout.visibility = View.VISIBLE
-            val URL = "https://api.thecatapi.com/v1/breeds"
-            val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, URL, null, { response ->
+            val url = "https://api.thecatapi.com/v1/breeds"
+            val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, url, null, { response ->
                 progressLayout.visibility = View.GONE
                 if (response != null) {
                     Log.d("hasil", "onResponse: $response")
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                             map["nama"] = jsonObject.getString("name")
                             map["asal"] = jsonObject.getString("origin")
                             arrayCats.add(map)
-                            val catAdapter = CatAdapter(this@MainActivity, arrayCats)
+                            val catAdapter = CatAdapter(arrayCats)
                             rvCat.adapter = catAdapter
                         } catch (e: JSONException) {
                             e.printStackTrace()
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             }) { error ->
                 progressLayout.visibility = View.GONE
                 Log.e("hasil", "onErrorResponse: " + error.message)
-                Toast.makeText(this@MainActivity, "Server error, try again", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Server error, try again later", Toast.LENGTH_SHORT).show()
             }
             val requestQueue = Volley.newRequestQueue(this@MainActivity)
             requestQueue.add(jsonArrayRequest)
