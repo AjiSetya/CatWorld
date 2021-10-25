@@ -58,7 +58,11 @@ class MainActivity : AppCompatActivity() {
             }) { error ->
                 progressLayout.visibility = View.GONE
                 Log.e("hasil", "onErrorResponse: " + error.message)
-                Toast.makeText(this@MainActivity, "Server error, try again later", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    "Server error, try again later",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             val requestQueue = Volley.newRequestQueue(this@MainActivity)
             requestQueue.add(jsonArrayRequest)

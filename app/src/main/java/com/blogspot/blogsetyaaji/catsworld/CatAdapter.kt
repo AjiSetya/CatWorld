@@ -11,14 +11,14 @@ import java.util.*
 // data dari home fragment di masukkan ke dalam variable adapter
 // penangkap data dari home fragment
 // deklarasi variable data dari home fragment
-internal class CatAdapter(private val listData: ArrayList<HashMap<String, String>>)
-    : RecyclerView.Adapter<CatAdapter.MyViewHolder>() {
+internal class CatAdapter(private val listData: ArrayList<HashMap<String, String>>) :
+    RecyclerView.Adapter<CatAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int) = MyViewHolder(
-            // memasang layout item ke dalam adapter
-            // memasukkan  layout ke dalam viewhlder
-            LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.item_cat, viewGroup, false)
+        // memasang layout item ke dalam adapter
+        // memasukkan  layout ke dalam viewhlder
+        LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_cat, viewGroup, false)
     )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
