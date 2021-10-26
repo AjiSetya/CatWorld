@@ -7,7 +7,9 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
@@ -26,9 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         rvCat = findViewById(R.id.rv_cat)
         progressLayout = findViewById(R.id.progress_layout)
-        rvCat.apply {
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-        }
+        rvCat.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
         arrayCats = ArrayList()
         cats
     }
