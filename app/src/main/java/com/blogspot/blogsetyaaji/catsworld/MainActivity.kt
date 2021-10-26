@@ -22,13 +22,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressLayout: RelativeLayout
     private lateinit var arrayCats: ArrayList<HashMap<String, String>>
 
+    companion object {
+        const val DATA_NAME = "name"
+        const val DATA_ORIGIN = "origin"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         rvCat = findViewById(R.id.rv_cat)
         progressLayout = findViewById(R.id.progress_layout)
-        rvCat.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
+        rvCat.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         arrayCats = ArrayList()
         cats
     }
@@ -45,8 +50,8 @@ class MainActivity : AppCompatActivity() {
                         try {
                             val jsonObject = response.getJSONObject(a)
                             val map = HashMap<String, String>()
-                            map["nama"] = jsonObject.getString("name")
-                            map["asal"] = jsonObject.getString("origin")
+                            map[DATA_NAME] = jsonObject.getString("name")
+                            map[DATA_ORIGIN] = jsonObject.getString("origin")
                             arrayCats.add(map)
                             val catAdapter = CatAdapter(arrayCats)
                             rvCat.adapter = catAdapter

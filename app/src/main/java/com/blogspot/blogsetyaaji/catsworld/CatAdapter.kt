@@ -22,14 +22,14 @@ internal class CatAdapter(private val listData: ArrayList<HashMap<String, String
     )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.txtnamae.text = listData[position]["nama"]
-        holder.txtorigin.text = listData[position]["asal"]
+        holder.txtname.text = listData[position][MainActivity.DATA_NAME]
+        holder.txtorigin.text = listData[position][MainActivity.DATA_ORIGIN]
     }
 
     override fun getItemCount() = listData.size
 
     internal inner class MyViewHolder(itemView: View) : ViewHolder(itemView) {
-        var txtnamae: TextView = itemView.findViewById(R.id.txt_name)
+        var txtname: TextView = itemView.findViewById(R.id.txt_name)
         var txtorigin: TextView = itemView.findViewById(R.id.txt_origin)
     }
 }
